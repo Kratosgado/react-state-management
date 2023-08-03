@@ -1,10 +1,9 @@
+import { useAppContext } from "./AppContext";
 
 
-interface Props {
-   permissions: undefined | string[]
-}
-
-export function Content({ permissions }: Props) {
+export function Content() {
+   const { permissions } = useAppContext();
+   
    if (permissions === undefined) return null;
 
    return permissions.includes('admin') ? (

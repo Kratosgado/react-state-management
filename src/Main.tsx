@@ -1,12 +1,12 @@
 import { User } from "./api/authenticate";
+import { useAppContext } from "./AppContext";
 import { Content } from './Content';
 
-interface Props {
-   user: undefined | User;
-   permissions: undefined | string[]
-}
 
-export function Main({ user, permissions }: Props) {
+
+export function Main() {
+   const { user } = useAppContext();
+
    return (
       <main className="py-8">
          <h1 className="text-3x1 text-center font-bold underline">
@@ -15,7 +15,7 @@ export function Main({ user, permissions }: Props) {
          <p className="mt-8 text-xl text-center">
             {user ? `Hello ${user.name}!` : "Please sign in"}
          </p>
-         <Content permissions={permissions} />
+         <Content />
       </main>
    )
 }
