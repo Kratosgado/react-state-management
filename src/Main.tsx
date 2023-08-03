@@ -1,4 +1,3 @@
-import { User } from "./api/authenticate";
 import { useAppContext } from "./AppContext";
 import { Content } from './Content';
 
