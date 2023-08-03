@@ -22,8 +22,7 @@ export function Header({ user, onSignInClick, loading }: Props) {
                      font-medium text-white bg-indigo-600 hover:bg-indigo-700
                   "
                   disabled={loading}
-                  title={loading ? '...' : 'Sign in'}
-               />
+               >{loading ? '...' : 'Sign in'}</button>
          )}
       </header>
    )

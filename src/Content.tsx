@@ -8,11 +8,11 @@ export function Content({ permissions }: Props) {
    if (permissions === undefined) return null;
 
    return permissions.includes('admin') ? (
-      <p className="mt-4 text-l text-center">
+      <p className="mt-4 text-xl text-center">
          Some important stuff that only an admin can do
       </p>
    ) : (
-         <p className="mt-4 text-l text-center">
+         <p className="mt-4 text-xl text-center">
             Insufficient permissions
          </p>
    )
