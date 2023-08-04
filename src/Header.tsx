@@ -1,26 +1,35 @@
+import { useSelector, useDispatch } from 'react-redux'
+import type { RootState } from './store/store'
+import {
+   authenticatedAction, authenticeAction,
+   authorizeAction, authorizedAction
+} from './store/userSlice'
+
 import { authenticate } from "./api/authenticate";
 import { authorize } from "./api/authorize";
-import { useAppContext } from "./AppContext";
 
 export function Header() {
-   const {user, loading, dispatch}= useAppContext();
+   // const user = useSelector(
+   //    (state: RootState) => state.user.user
+   // );
+   const { user, loading } = useSelector(
+      (state: RootState) => state.user
+   )
+
+   const dispatch = useDispatch();
 
    async function handleSignInClick() {
-      dispatch({ type: "authenticate" });
+      dispatch(authenticeAction());
       const authenticatedUser = await authenticate();
-      dispatch({
-        type: "authenticated",
-        user: authenticatedUser,
-      });
-      if (authenticatedUser !== undefined) {
-        dispatch({ type: "authorize" });
+      dispatch(authenticatedAction(authenticatedUser));
+
+      if (authenticatedUser) {
+        dispatch(authorizeAction());
         const authorizedPermissions = await authorize(authenticatedUser.id);
-        dispatch({
-          type: "authorized",
-          permissions: authorizedPermissions,
-        });
+        dispatch(authorizedAction(authorizedPermissions));
       }
-    }
+   }
+   
    return (
       <header className="flex justify-between items-center border-b-2 border-gray-100 py-6">
          {user ? (

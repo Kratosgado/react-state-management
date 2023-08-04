@@ -17,14 +17,14 @@ export const userSlice = createSlice({
    name: 'user',
    initialState,
    reducers: {
-      authenticationAction: (state) => {
+      authenticeAction: (state) => {
          state.loading = true;
       },
       authenticatedAction: (state, action: PayloadAction<User | undefined>) => {
          state.user = action.payload;
          state.loading = false
       },
-      authorizationAction: (state) => {
+      authorizeAction: (state) => {
          state.loading = true
       },
       authorizedAction: (state, action: PayloadAction<string[]>) => {
@@ -35,8 +35,8 @@ export const userSlice = createSlice({
 });
 
 export const { authenticatedAction,
-   authenticationAction,
-   authorizationAction,
+   authenticeAction,
+   authorizeAction,
    authorizedAction
 } = userSlice.actions;
 
